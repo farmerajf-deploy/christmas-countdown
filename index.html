@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Countdown</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a472a 0%, #0f291a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Snowflakes */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            font-size: 1em;
+            user-select: none;
+            z-index: 1;
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            z-index: 2;
+            max-width: 90%;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .christmas-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            color: #ffd700;
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .time-unit {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            border: 3px solid #c41e3a;
+            transition: transform 0.3s ease;
+        }
+
+        .time-unit:hover {
+            transform: translateY(-5px);
+        }
+
+        .time-value {
+            font-size: 4em;
+            font-weight: bold;
+            color: #c41e3a;
+            line-height: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .time-label {
+            font-size: 1.2em;
+            color: #0f5132;
+            text-transform: uppercase;
+            margin-top: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .message {
+            color: #ffd700;
+            font-size: 1.3em;
+            margin-top: 30px;
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .christmas-message {
+            font-size: 3em;
+            color: #ffd700;
+            font-weight: bold;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .countdown {
+                gap: 15px;
+            }
+
+            .time-unit {
+                min-width: 80px;
+                padding: 15px 20px;
+            }
+
+            .time-value {
+                font-size: 2.5em;
+            }
+
+            .time-label {
+                font-size: 0.9em;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="christmas-icon">🎄</div>
+        <h1>Christmas Countdown</h1>
+        <div class="subtitle">Time Until Christmas</div>
+
+        <div id="countdown" class="countdown">
+            <div class="time-unit">
+                <div class="time-value" id="days">0</div>
+                <div class="time-label">Days</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="hours">0</div>
+                <div class="time-label">Hours</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="minutes">0</div>
+                <div class="time-label">Minutes</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="seconds">0</div>
+                <div class="time-label">Seconds</div>
+            </div>
+        </div>
+
+        <div class="message" id="message">🎅 Ho Ho Ho! Christmas is coming! 🎁</div>
+    </div>
+
+    <script>
+        // Create snowflakes
+        function createSnowflakes() {
+            const snowflakeCount = 50;
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = '❄';
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                snowflake.style.fontSize = (Math.random() * 1 + 0.5) + 'em';
+                document.body.appendChild(snowflake);
+            }
+        }
+
+        // Countdown logic
+        function updateCountdown() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+
+            // Set Christmas date for current year
+            let christmas = new Date(currentYear, 11, 25, 0, 0, 0);
+
+            // If Christmas has passed this year, set it for next year
+            if (now > christmas) {
+                christmas = new Date(currentYear + 1, 11, 25, 0, 0, 0);
+            }
+
+            const timeDiff = christmas - now;
+
+            if (timeDiff <= 0) {
+                // It's Christmas Day!
+                document.getElementById('countdown').innerHTML =
+                    '<div class="christmas-message">🎄 Merry Christmas! 🎅</div>';
+                document.getElementById('message').innerHTML =
+                    '🎁 Wishing you joy, peace, and happiness! 🎁';
+                return;
+            }
+
+            // Calculate time units
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+            // Update display
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+            // Update message based on time remaining
+            let message = '';
+            if (days === 0) {
+                message = '🎄 Christmas is TODAY! 🎄';
+            } else if (days === 1) {
+                message = '🎅 Only 1 day until Christmas! 🎁';
+            } else if (days <= 7) {
+                message = '⭐ Less than a week until Christmas! ⭐';
+            } else if (days <= 30) {
+                message = '🔔 Christmas is almost here! 🔔';
+            } else {
+                message = '🎅 Ho Ho Ho! Christmas is coming! 🎁';
+            }
+            document.getElementById('message').textContent = message;
+        }
+
+        // Initialize
+        createSnowflakes();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
