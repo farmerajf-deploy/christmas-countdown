@@ -118,6 +118,62 @@
             }
         }
 
+        /* Timeline */
+        .timeline {
+            margin-top: 50px;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 45px;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: 1;
+        }
+
+        .timeline-items {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+            padding: 0 10%;
+        }
+
+        .timeline-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: #ffd700;
+            border: 4px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 15px;
+        }
+
+        .timeline-label {
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5em;
@@ -142,6 +198,23 @@
 
             .container {
                 padding: 40px 20px;
+            }
+
+            .timeline-label {
+                font-size: 0.8em;
+            }
+
+            .timeline-icon {
+                font-size: 1.5em;
+            }
+
+            .timeline-items {
+                padding: 0 5%;
+            }
+
+            .timeline-line {
+                left: 5%;
+                right: 5%;
             }
         }
     </style>
@@ -172,6 +245,32 @@
         </div>
 
         <div class="message" id="message">🎅 Ho Ho Ho! Christmas is coming! 🎁</div>
+
+        <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-items">
+                <div class="timeline-item">
+                    <div class="timeline-icon">🇦🇺</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-label">Australia</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">✈️</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-label">Flying</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🇬🇧</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-label">UK</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🎄</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-label">Christmas Day</div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
